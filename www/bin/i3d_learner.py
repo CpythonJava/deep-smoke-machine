@@ -53,7 +53,7 @@ class I3d(BaseLearner):
         super().__init__(use_cuda=use_cuda)
 
         # 初始化对象属性
-        self.use_cuda = use_cuda     
+        # self.use_cuda = use_cuda     
         self.use_tsm = use_tsm
         self.use_nl = use_nl
         self.use_tc = use_tc

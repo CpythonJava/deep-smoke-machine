@@ -10,13 +10,13 @@
 2.【将元数据分成三组：训练、验证和测试】<br/>
 (将字典中"label_state" and "label_state_admin"聚合到最后的标签中，由新的“label”键表示)
 ```sh
-cd www/init_datasets
+cd www/init_datasets/
 python split_metadata.py confirm
 ```
 
 3.【将元数据文件中所有视频下载到data/videos/】
 ```sh
-cd www/init_datasets
+cd www/init_datasets/
 python download_videos.py
 ```
 
@@ -30,7 +30,7 @@ git checkout master
 5.【处理并保存所有视频为RGB帧到data/rgb/和光流帧到data/flow/】<br/>
 【默认只处理RGB帧,如果需要光流帧,在[process_videos.py]将flow_type设为1】
 ```sh
-cd www/init_datasets
+cd www/init_datasets/
 python process_videos.py
 ```
 
@@ -57,11 +57,11 @@ python test.py ssl-i3d-rgb data/saved_model/i3d/I3D-rgb-s6/model/*****.pt
 ```
 
 # <a name="code-structure"></a>Code infrastructure
-【[base_learner.py](bin/base_learner_self.py)实现fit和test函数，提供共享的功能，比如共享模型加载，模型保存，数据增强和进度日志记录】<br/>
-【[i3d_learner_self.py](bin/i3d_learner_self.py)继承了STCNet模型训练的base_learner.py，提供反向传播和GPU并行计算】<br/>
-【[smoke_video_dataset_self.py](bin/smoke_video_dataset_self.py)数据集定义，用于创建DataLoader类和Dataset类，可以在训练模型时迭代批处理】<br/>
-【[opencv_functional.py](bin/opencv_functional.py)，用于处理视频帧和视频数据增强】<br/>
-【[video_transforms.py](bin/video_transforms.py)，用于处理视频帧和视频数据增强】
+【[base_learner.py](www/bin/base_learner.py)实现fit和test函数，提供共享的功能，比如共享模型加载，模型保存，数据增强和进度日志记录】<br/>
+【[i3d_learner.py](www/bin/i3d_learner.py)继承了STCNet模型训练的base_learner.py，提供反向传播和GPU并行计算】<br/>
+【[smoke_video_dataset.py](www/bin/smoke_video_dataset.py)数据集定义，用于创建DataLoader类和Dataset类，可以在训练模型时迭代批处理】<br/>
+【[opencv_functional.py](www/bin/opencv_functional.py)，用于处理视频帧和视频数据增强】<br/>
+【[video_transforms.py](www/bin/video_transforms.py)，用于处理视频帧和视频数据增强】
 
 # <a name="dataset"></a>Dataset
 【开放数据集[metadata.json](data/metadata.json)数组中每个元素表示视频的元数据】<br/>

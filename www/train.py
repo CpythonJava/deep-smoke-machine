@@ -1,8 +1,6 @@
 import sys
-
-# from bin.i3d_learner import I3dLearner
 sys.path.append("..")
-from bin.i3d_learner_self import I3d
+from bin.i3d_learner import I3d
 
 def main(argv):
     if len(argv) < 2:
