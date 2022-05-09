@@ -76,5 +76,3 @@ python test.py ssl-i3d-rgb data/saved_model/i3d/I3D-rgb-s6/model/*****.pt
 【url_root：视频URL根，需要结合url_root + url_part得到完整URL】<br/>
 【url_part：视频URL部分，需要结合url_root + url_part得到完整URL】<br/>
 【file_name：视频文件名——[camera_id]-[view_id]-[year]-[month]-[day]-[bound_left]-[bound_top]-[bound_right]-[bound_bottom]-[video_height]-[video_width]-[start_frame_number]-[start_epoch_time]-[end_epoch_time]】
-
-【运行[split_metadata.py](main/init_datasets/split_metadata.py)后，】
