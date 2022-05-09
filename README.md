@@ -2,13 +2,13 @@
 工业烟气排放识别的深度学习模型和数据集：
  [smoke labeling tool](https://github.com/CMU-CREATE-Lab/video-labeling-tool). 
 
-!![不同类型烟雾视频：高不透明、低不透明、蒸汽、蒸汽与烟](data/dataset/smoke-type.gif)
+[不同类型烟雾视频：高不透明、低不透明、蒸汽、蒸汽与烟](data/dataset/smoke-type.gif)
 
 
 # <a name="use-this-tool"></a>Use this tool
-!!cmd在smoke_detection_self文件环境下!!
-!!cmd在smoke_detection_self文件环境下!!
-!!cmd在smoke_detection_self文件环境下!!
+!!cmd在smoke_detection_self文件环境下!!<br/>
+!!cmd在smoke_detection_self文件环境下!!<br/>
+!!cmd在smoke_detection_self文件环境下!!<br/>
 1.【使用RISE数据集的JSON文件】
 ```sh
 cd data
@@ -34,7 +34,7 @@ git submodule update --init --recursive
 git checkout master
 ```
 
-5.【处理并保存所有视频为RGB帧到data/rgb/和光流帧到data/flow/】
+5.【处理并保存所有视频为RGB帧到data/rgb/和光流帧到data/flow/】<br/>
 【默认只处理RGB帧,如果需要光流帧,在[process_videos.py]将flow_type设为1】
 ```sh
 cd main/init_datasets
@@ -46,11 +46,11 @@ python process_videos.py
 cd main/STCNet
 python train.py ssl-i3d-rgb
 ```
-{训练步骤}
-{1.设定初始学习率=0.1}
-{2.保持学习率学习，知道训练误差减小太慢，或者验证误差一直增加}
-{3.降低学习率10倍}
-{4.从之前学习率训练的模型中加载最佳模型权重}
+{训练步骤}<br/>
+{1.设定初始学习率=0.1}<br/>
+{2.保持学习率学习，知道训练误差减小太慢，或者验证误差一直增加}<br/>
+{3.降低学习率10倍}<br/>
+{4.从之前学习率训练的模型中加载最佳模型权重}<br/>
 {5.重复2,3,4直到收敛}
 
 7.【在[TensorBoard]上查看训练和测试结果】
@@ -67,26 +67,26 @@ python test.py stc-rgb ../../data/saved_model/stc-rgb-cv-1/STCNet-rgb-s0/model/*
 
 
 # <a name="code-structure"></a>Code infrastructure
-【[base_learner.py](main/base_learner.py)实现fit和test函数，提供共享的功能，比如共享模型加载，模型保存，数据增强和进度日志记录】
-【[stcnet_learner.py](main/stcnet_learner.py)继承了STCNet模型训练的base_learner.py，提供反向传播和GPU并行计算】
-【[smoke_video_dataset_stc.py](main/smoke_video_dataset_stc.py)数据集定义，用于创建DataLoader类和Dataset类，可以在训练模型时迭代批处理】
-【[opencv_functional.py](main/opencv_functional.py)，用于处理视频帧和视频数据增强】
+【[base_learner.py](main/base_learner.py)实现fit和test函数，提供共享的功能，比如共享模型加载，模型保存，数据增强和进度日志记录】<br/>
+【[stcnet_learner.py](main/stcnet_learner.py)继承了STCNet模型训练的base_learner.py，提供反向传播和GPU并行计算】<br/>
+【[smoke_video_dataset_stc.py](main/smoke_video_dataset_stc.py)数据集定义，用于创建DataLoader类和Dataset类，可以在训练模型时迭代批处理】<br/>
+【[opencv_functional.py](main/opencv_functional.py)，用于处理视频帧和视频数据增强】<br/>
 【[video_transforms.py](main/video_transforms.py)，用于处理视频帧和视频数据增强】
 
 
 # <a name="dataset"></a>Dataset
-【开放数据集[metadata_02242020.json](data/dataset/metadata_02242020.json)数组中每个元素表示视频的元数据】
+【开放数据集[metadata_02242020.json](data/dataset/metadata_02242020.json)数组中每个元素表示视频的元数据】<br/>
 【每个元素都是一个带有键和值的字典，该数据集包含了12567个片段，其中19个不同的视图来自三个监控三个不同工业设施的站点的摄像机。
 这段视频是在白天拍摄的，历时30天，跨越了两年内的四季。】
 
-【camera_id：摄像机的ID】
-【view_id：相机裁剪的ID，每个视图都是从相机拍摄的全景图中裁剪出来的】
-【id：视频片段的id】
-【label_state：志愿者打的标签】
-【label_state_admin：研究人员打的标签】
-【start_time：对应真实世界，捕捉视频开始的时间】
-【url_root：视频URL根，需要结合url_root + url_part得到完整URL】
-【url_part：视频URL部分，需要结合url_root + url_part得到完整URL】
+【camera_id：摄像机的ID】<br/>
+【view_id：相机裁剪的ID，每个视图都是从相机拍摄的全景图中裁剪出来的】<br/>
+【id：视频片段的id】<br/>
+【label_state：志愿者打的标签】<br/>
+【label_state_admin：研究人员打的标签】<br/>
+【start_time：对应真实世界，捕捉视频开始的时间】<br/>
+【url_root：视频URL根，需要结合url_root + url_part得到完整URL】<br/>
+【url_part：视频URL部分，需要结合url_root + url_part得到完整URL】<br/>
 【file_name：视频文件名——[camera_id]-[view_id]-[year]-[month]-[day]-[bound_left]-[bound_top]-[bound_right]-[bound_bottom]-[video_height]-[video_width]-[start_frame_number]-[start_epoch_time]-[end_epoch_time]】
 
 【运行[split_metadata.py](main/init_datasets/split_metadata.py)后，将字典中"label_state" and "label_state_admin"聚合到最后的标签中，由新的“label”键表示】
